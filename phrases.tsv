@@ -1,0 +1,238 @@
+飞花逐月特效	PetalsMoon FX
+星屑飞溅剑气	StardustSplash sword aura
+圣母咏叹空中斩击	MadonnasAria air slash
+镜花水月斩击特效	MirrorFlowerMoon slash FX
+圣母咏叹斩击	MadonnasAria slash
+飞花逐月受击	PetalsMoon hit reaction
+镜花水月受击	MirrorFlowerMoon hit reaction
+月下舞受击	Moonlit dance hit reaction
+狂风绝息斩受击	TempestSlash hit reaction
+狂风绝息斩标记	TempestSlash marker
+狂风绝息斩斩击	TempestSlash slash
+星屑飞溅受击	StardustSplash hit reaction
+圣母咏叹剑刺特效	MadonnasAria stab FX
+圣母咏叹锁屏	MadonnasAria screen lock
+圣母咏叹碎屏	MadonnasAria screen break
+无形斩受击	FormlessSlash hit reaction
+幻影闪剑气受击	PhantomFlash aura hit
+中子冲击击飞	NeutronImpact launch
+中子冲击弹墙	NeutronImpact wall bounce
+幻影闪分身	PhantomFlash afterimage
+幻影闪剑气	PhantomFlash sword aura
+成功したときの残像	Afterimage on success
+右侧数字越大概率越高	Higher right bound = higher random chance
+血量检测伤害增加	Life-based damage scaling check
+凹即死，爽！	Reversal-to-death (high read)
+凹即死	Reversal-to-death
+你到底是要我凹他还是凹他的妈啊	Stacked hard-read reversal memento
+此时不凹,更待何时	All-in reversal timing
+凹一气，爽！	One-bar reversal mix
+凹三气，爽！	Three-bar reversal mix
+残血接三气	Low HP into three-bar super
+P2残血接三气	Opponent low HP into three-bar
+无限连收尾	Infinite loop ender
+残血无限连	Low HP infinite route
+对空AI	Anti-air AI logic
+被压起身	Wakeup under pressure
+压起身	Meaty / pressure on wakeup
+金身	Super armor / gold body
+我等已放下屠刀,立地成佛	HitOverride: faux invuln line
+当身成功进攻	Parry success punish
+飞道打中进攻	Projectile hit confirm
+飞道	projectile
+200内发射飞道	Projectile in outer range band
+200内进攻	Approach in mid band
+不在范围内开始追击	Chase when out of range
+当身成功进攻	Parry success follow-up
+空中进攻成功	Air hit confirm route
+60内进攻	Close range offense
+连点A	Mash light
+致敬传奇斩铁,手里的小刀突然开始_cancel	Zantetsu meme cancel line
+致敬传奇斩铁	Zantetsu homage
+手里的小刀突然开始_cancel	Micro-dash cancel joke
+任意时间锁定P2自动_turn	Force face opponent when far
+防止跑取消成走	Block run decay to walk
+检测对方攻击	React to enemy attack
+AI行走	AI walk state
+AI落地	AI land state
+弹墙	wall bounce helper
+切换色表	palette routing (noop)
+强敌开关	Strong-mode toggle (var22)
+时常ai	Always-on AI: 1 on 0 off
+开启= 1  关闭 = 0	On=1 Off=0
+4P自动回气	P4+ auto meter
+6P以上出招无敌	P5+ attack invuln
+6P以上残血底力	P7+ low-HP defence scaling
+6P攻击力增高	P6+ damage multiplier tiers
+禁止跳跃	Block jump (AI)
+凹啊	Hard read attempt
+凹吧	Commit reversal
+凹他妈的啊	Committed reversal (meme)
+无情连	Ruthless chain
+起手	Starter link
+结束	End / finisher
+跳号	Jump state id placeholder
+四重痛楚	Quad Pain
+剑刺	Sword stab helper
+剑光粒子	Blade glow particles
+攻击属性	HitDef block
+星光裂空	Starlight Cleave
+斩击剑光	Slash trail helper
+剑光闪烁	Blade glint helper
+四方斩剑光	Quad slash beam
+方形斩	four-way slash FX
+透明	transparency
+缩放	scale
+转向	facing
+影子消除	shadow cleanup
+剑光	blade glow trail
+消散	dissipate fade
+锁定	lock bind
+特效	VFX
+音效	SFX
+速度	velocity / speed
+定位	positioning
+解除	clear remove
+声音	voice line
+跳转	state change
+断言	assert
+动画	animation elem
+屏幕锁定	screen lock
+屏幕半黑	half-dark overlay
+屏幕震动	env shake
+状态	state type
+气焰	aura flare
+推挤	corner push
+连招	combo link
+加速	speed ramp
+灰尘	dust helper
+特效消除	VFX clear
+剑刺	stab helper
+火花	spark
+连击数	combo counter
+最長	max duration
+染色	tint / palfx
+火花变量	spark var slot
+伤害	damage
+摩擦	friction
+位移	offset move
+慢放	hit slow
+受击属性	get-hit flags
+无敌	invulnerability
+攻击力增高	attack scale up
+随机	random branch
+图层	draw layer
+死亡特效	death FX
+气场	energy field
+剑影	sword afterimage
+推挤宽度	push width
+状态解除	state clear
+浮空取消	aerial cancel
+胜利	win pose
+开场	intro
+跳跃	jump
+结衣	Yui helper
+斗篷	cape
+站立竖斩	stand vertical slash
+站立横斩	stand horizontal slash
+下蹲侧斩	crouch side slash
+下蹲轻刺	crouch light stab
+挑斩	rising slash
+下蹲连斩	crouch chain slash
+空中横斩	jump horizontal slash
+空中挑斩	jump rising slash
+空中前刺	jump forward stab
+空中竖斩	jump vertical slash
+抓取	throw grab
+抓取转向	grab face adjust
+抓取直刺	grab thrust
+格挡直刺	parry thrust
+星光突袭后跳	StarlightRaid hop back
+星光突袭攻击	StarlightRaid hitbox
+空中星光突袭	air StarlightRaid
+瞬刺	flash stab
+光影	light effect
+弹墙特效	wall bounce FX
+闪光	flash bright
+斩击火花	slash sparks
+黑屏	black screen
+斩击底色	slash backdrop
+倒影	reflection
+番目	elem index
+粒子	particle
+十字架	cross FX
+暂停	pause
+站立	stand
+气流	wind streak
+格挡	parry box
+变量	var storage
+控制	control return
+控制恢复	regain control
+对手转向	force P2 face
+对手控制	P2 state grab
+动画暂停	anim freeze
+动画打击暂停	hit pause
+突刺剑光	lunge glow
+剑光聚集	glow charge
+落光	trailing light
+灰尘特效	dust VFX
+行走	walk
+跑步	run
+血线检测伤害增加	life gate damage
+稳健开关	power-mode flag
+幻影	phantom helper
+爽	exclaim (AI aggression)
+取消	cancel route
+变量	var
+成功したときの残像	hit AfterImage
+飞道速度	proj speed
+飞道出现位置	proj spawn
+飞道存在时间	proj lifetime
+碎屏	screen crack
+圣母咏叹受击	MadonnasAria react
+飞花逐月本体	PetalsMoon root FX
+飞花逐月	PetalsMoon move
+轻云出月风静夜	CloudMoonCalm move
+无形斩	FormlessSlash move
+镜花水月	MirrorFlowerMoon move
+圣母咏叹	MadonnasAria move
+星屑飞溅	StardustSplash move
+狂风绝息斩	TempestSlash move
+幻影闪	PhantomFlash move
+中子冲击	NeutronImpact move
+水平四方斩	HorizontalSlash move
+条纹突刺	LinearThrust move
+星屑泪光	StardustGleam move
+闪光穿刺	FlashThrust move
+四重痛楚	QuadPain move
+顺刺	ForwardThrust move
+闪光突袭	FlashRaid move
+星光裂空	StarlightCleave move
+星光突袭	StarlightRaid move
+格挡反击	ParryCounter move
+正妻铁拳	IronFist move
+流星冲刺	MeteorRush move
+反身后跳	Backflip move
+空中流星冲刺	AirMeteorRush move
+防御反击	Zero Counter
+前闪避	Forward dodge
+后闪避	Back dodge
+闪避	Evasive dash
+しゃがみ	crouch
+キャンセル設定	cancel setup
+重力	gravity
+着陆	landing
+开启	enable flag
+关闭	disable flag
+抓取受击	grab hit spark
+尾光	particle trail
+尾光粒子	trail sparks
+消除	remove helper
+残影	afterimage trail
+挤压	squeeze clip
+时间结束	Round timeout end
+胜利 2	Win pose 2
+胜利 1	Win pose 1
+English（英語）	English (quotes)
+Japanese（日本語）	Japanese (quotes)
+初始化	Initialize

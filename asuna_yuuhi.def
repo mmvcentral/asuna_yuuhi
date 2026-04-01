@@ -1,0 +1,59 @@
+
+[Info]
+name ="Asuna-amultart"
+displayname ="Asuna Amultart"
+versiondate =12,25,2020
+mugenversion =1.0
+author ="lailaila&YUUHI"
+;AI logic author: YUUHI
+;Customizer (community credit): Chuxi
+pal.defaults =1
+
+[Files]
+sprite =asuna_chuxi.sff
+anim =Asuna.air
+sound =Asuna.snd
+cmd =Asuna.cmd
+cns =Constants.cns
+stcommon =common1.cns
+st =States\System.cns
+st1=States\Normal.cns
+st2=States\Specials.cns
+st3=States\Supers.cns
+st4=States\Hypers.cns
+st5=States\Max.cns
+st6=States\Helpers.cns
+st7=States\-2.cns
+st8=States\AI.cns
+st9=config.txt
+
+pal1 = Palettes\Act01.act
+pal2 = Palettes\Act02.act
+pal3 = Palettes\Act03.act
+pal4 = Palettes\Act04.act
+pal5 = Palettes\Act03.act
+pal6 = Palettes\Act03.act
+pal7 = Palettes\Act03.act
+pal8 = Palettes\Act03.act
+pal9 = Palettes\Act03.act
+pal10 = Palettes\Act03.act
+pal11 = Palettes\Act03.act
+pal12 = Palettes\Act03.act
+
+[Palette Keymap]
+a  = 1
+b  = 2
+c  = 3
+x  = 4
+y  = 5
+z  = 6
+a2 = 7
+b2 = 8
+c2 = 9
+x2 = 10
+y2 = 11
+z2 = 12
+
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

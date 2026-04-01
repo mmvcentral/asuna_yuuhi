@@ -1,0 +1,16 @@
+;===============< INITIALIZE >===================
+;Initialize Start Round
+[Statedef 5901]
+type = S
+
+
+
+[State 5900, Intro Decider]
+type = ChangeState
+trigger1 = RoundNo = 1
+value = ifelse(random<333,191,190)
+
+[State 5900, End]
+type = ChangeState
+trigger1 = 1
+value = 0

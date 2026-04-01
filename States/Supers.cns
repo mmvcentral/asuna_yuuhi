@@ -1,0 +1,3607 @@
+;------------------------------------------------------------------
+; FlashThrust move
+[Statedef 2000]
+type=S
+movetype=A
+physics=N
+ctrl=0
+anim=2000
+velset=0,0
+sprpriority=2
+facep2=1
+POWERADD = -500
+
+[State 2000, hit slow]
+type = SuperPause
+trigger1 = time = [0,10]
+trigger1 = gametime%2=0
+movetime = 30
+anim = -1
+sound = -1
+time = 1
+darken = 0
+p2defmul = 1
+
+[State 2000, SFX]
+type = PlaySnd
+trigger1 = AnimElem =1
+value = 100,36
+
+[State 2000, half-dark overlay]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = 0,0,0
+mul = 100,100,100
+sinadd = 0,0,0,10
+invertall = 0
+ignorehitpause = 1
+
+[State 2000, voice cue]
+type = PlaySnd
+trigger1 = AnimElem =4
+value = 1200,random%3
+channel = 0
+
+[State 2000, SFX]
+type = PlaySnd
+trigger1 = Animelem =4
+value = 1,7
+channel=1
+
+[State 2000, velocity / speed]
+type = VelSet
+trigger1 =Animelem =4
+x = 40
+
+[State 2000, VFX]
+type = Explod
+trigger1 = animelem = 1
+anim = 13018
+id = 13018
+pos = 30,-80
+postype = p1
+scale = .5,.5
+bindtime = 999
+removeongethit = 1
+ownpal = 1
+persistent = 0
+sprpriority = 4
+ignorehitpause = 1
+
+[State 2000, VFX]
+type = Explod
+trigger1 = animelem = 4
+anim = 13012
+id = 1100
+pos = -10,-50
+postype = p1
+scale = 1.8,1.6
+bindtime = 999
+removeongethit = 1
+ownpal = 1
+persistent = 0
+sprpriority = -4
+ignorehitpause = 1
+
+[State 2000, VFX]
+type = Explod
+trigger1 = animelem = 4
+anim = 13013
+id = 1100
+pos = 10,-60
+postype = p1
+bindtime = 999
+removetime = 15
+removeongethit = 1
+scale =.75,.75
+ownpal = 1
+persistent = 0
+sprpriority = 4
+ignorehitpause = 1
+
+[State 2000, VFX]
+type = Explod
+trigger1 = animelem = 7
+anim = 13014
+id = 1100
+pos = 0,0
+postype = p1
+bindtime = 1
+removetime = -2
+removeongethit = 1
+accel = -0.02,-0.02
+ownpal = 1
+persistent = 0
+sprpriority = 4
+ignorehitpause = 1
+
+[State 2000, blade glow trail]
+type = Helper
+trigger1 =animelem=1
+helpertype = normal 
+ID =2000
+stateno =2011
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2000, blade glow trail]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2000
+stateno =2010
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2000, dust helper]
+type = Helper
+trigger1 = Animelem =4
+helperType = Normal
+stateNo = 8103
+ID = 8100
+posType = P1
+pauseMoveTime = 255
+superMoveTime = 255
+ownPal = 1
+
+[State 2000, dust helper]
+type = Helper
+trigger1 = Animelem =5
+helperType = Normal
+stateNo = 2012
+ID = 8100
+posType = P1
+pauseMoveTime = 255
+superMoveTime = 255
+ownPal = 1
+
+[State 2000, dust helper]
+type=Explod
+trigger1=Animelem =4
+anim=8107
+id=8107
+sprPriority=3
+posType=P1
+scale=0.25,0.25
+pauseMoveTime=-1
+superMoveTime=-1
+ownPal=1
+
+[State 2000, SFX]
+type = PlaySnd
+trigger1 = Animelem =4
+value = 102, 0
+channel = 5
+
+[State 2000, HitDef block]
+type = HitDef
+attr = S, SA
+trigger1 = !time
+animtype = Hard
+damage = 80,10
+getpower=72, 36 
+givepower=35, 35
+priority=4, hit
+guardflag = MA
+hitflag=MAFD
+pausetime =0,12
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-40
+hitsound=S2+10*var(44),14
+guardsound = s130, 2
+ground.type = high
+ground.slidetime = 20
+ground.hittime  = 20
+guard.hittime = 20
+ground.velocity=-2.5,-2.5
+guard.velocity=-2.5
+air.velocity = -1.2,-2.5
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+airguard.cornerpush.veloff = 0
+fall = 1
+fall.recover = 0
+air.fall = 1
+yaccel = .5
+envshake.time=14
+envshake.ampl=-24
+envShake.freq=120
+p2stateno = 2001
+
+[State 2000, frictionforce]
+type = VelMul
+trigger1 =AnimElem = 5, >= 0
+x = .75
+
+[State 2000, SFX]
+type = PlaySnd
+trigger1 = AnimElem = 9
+value = 101,0
+
+[State 2000, dust helper]
+type = Explod
+trigger1 = AnimElem = 9
+anim = 8104
+sprPriority=3
+posType = P1
+pos = 0,0
+vel = 0,0
+scale = 0.5,0.5
+pauseMovetime = -1
+superMoveTime = -1
+ownpal = 1
+
+[State 2000, VFX clear]
+type = RemoveExplod
+trigger1 = AnimElem = 2
+id = 13018
+
+[State 2000, state type]
+type=StateTypeSet
+trigger1=AnimElemTime(9) = 0
+moveType=I
+
+[State 2000, End / finisher]
+type = ChangeState
+trigger1 = !AnimTime
+value = 0
+ctrl = 1
+;------------------------------------------------------------------
+; FlashThrust moveget hit
+[Statedef 2001]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=-1,-20
+
+[State 2001, damage]
+type = LifeAdd
+trigger1 = time=0
+value = -lifemax*0.1
+absolute = 1
+
+[State 2001, screen lock]
+type = ScreenBound
+trigger1 = 1
+value = 0
+movecamera = 0,0
+
+[State 2001, animation elem]
+type = ChangeAnim2
+trigger1 = !time
+value = 2001
+ignorehitpause = 1
+
+[State 2001, positioning]
+type = PosSet
+triggerall = !time
+trigger1 = Pos Y >=0
+Y = -1
+ignorehitpause = 1
+
+[State 2001, pause]
+type = PosFreeze
+trigger1 = animelemno(0) =1
+ignorehitpause = 1
+
+[State 2001, velocity / speed]
+type = VelAdd
+trigger1 = animelemno(0)>=2
+Y = 0.6
+ignorehitpause = 1
+
+[State 2001, env shake]
+type = EnvShake
+trigger1 = Pos Y >=0
+time = 8
+freq = 100
+ampl = 13
+ignorehitpause = 1
+
+[State 2001, state change]
+type = changeState
+trigger1 = Pos Y >=0
+trigger1 = vel Y>0
+trigger2 = time >=600
+value = 5050
+ignorehitpause = 1
+;------------------------------------------------------------------
+;flash stab
+[Statedef 2100]
+type=S
+movetype=A
+physics=N
+ctrl=0
+anim=2100
+velset=0,0
+sprpriority=2
+facep2=1
+POWERADD = 100
+
+[State 0, BY]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+ignorehitpause = 1
+
+[State 2100, SFX]
+type=PlaySnd
+trigger1=AnimElem=3
+value=1,8
+channel=1
+
+[State 2100, SFX]
+type=PlaySnd
+trigger1=AnimElem=4
+value=1,9
+
+[State 2100, blade glow trail]
+type = Helper
+trigger1 =animelem=2
+helpertype = normal 
+ID =2100
+stateno =2110
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2100, Sword stab helper]
+type = Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2100
+stateno =2111
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2100, Sword stab helper]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2100
+stateno =2112
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2100, blade glow trail]
+type = Helper
+trigger1 =animelem=6
+helpertype = normal 
+ID =2100
+stateno =2113
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2100, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2100
+stateno = 10100
+postype = p1
+pos = 30,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2100, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3,=2
+id = 2100
+stateno = 10100
+postype = p1
+pos = 100,30
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2100, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2100
+stateno = 10100
+postype = p1
+pos = 150,50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2100, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2100
+stateno = 10100
+postype = p1
+pos = 180,50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 2100, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2100
+stateno = 10100
+postype = p1
+pos = 230,50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 2100, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2100
+stateno = 10101
+postype = p1
+pos = 300,50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 2100, HitDef block]
+type=HitDef
+trigger1=AnimElem=3
+attr= ,NA        
+hitflag=MAF       
+guardflag=M         
+animtype=Hard         
+priority=7, Hit   
+damage = 38, 10
+ID = 200
+pausetime =2, 8
+guard.pausetime = 12, 12
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=130), var(36):=-63
+hitsound=S2,14
+guardsound=s130, 2
+air.animType=Back
+fall.animType=Back
+ground.type=High     
+air.type=Low
+ground.slidetime=18 
+ground.hittime=18 
+guard.hittime=18
+air.hittime=120
+ground.velocity=-9
+guard.velocity=-9
+air.velocity=-5.39, -5.65
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+fall=0
+fall.recover = 0
+air.fall = 1
+yaccel = .5
+fall.recovertime=120
+envshake.time=10
+envshake.freq=100
+envshake.ampl=4
+air.fall=1
+p2getp1state = 1
+
+[State 2100, HitDef block]
+type=HitDef
+trigger1=AnimElem=4
+attr= ,NA        
+hitflag=MAF       
+guardflag=          
+animtype=Hard         
+priority=7, Hit   
+damage = 38,10
+ID = 200
+pausetime =4, 8
+guard.pausetime = 12, 12
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=0)
+sparkxy = -10 + 0*(var(35):=160), var(36):=-23
+hitsound=S2,14
+guardsound=s130, 2
+air.animType=Back
+fall.animType=Back
+ground.type=High     
+air.type=Low
+ground.slidetime=18 
+ground.hittime=38 
+guard.hittime=18
+air.hittime=120
+ground.velocity=19
+guard.velocity=19
+air.velocity=5.39, -5.65
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+fall=0
+fall.recover = 0
+air.fall = 1
+yaccel = .5
+fall.recovertime=120
+envshake.time=10
+envshake.freq=100
+envshake.ampl=4
+p2facing = -1
+air.fall=1
+p2getp1state = 1
+
+[State 2100, attackspark]
+type=helper
+triggerall= !numhelper(2100)
+trigger1= moveguarded=1 
+helpertype=normal
+stateno=ifelse(moveguarded, 12100, 12000)
+ID=2100
+postype=p2
+pos= -20,-23
+facing= -1
+ownpal=1
+pausemovetime=65535
+supermovetime=65535
+ignorehitpause = 1
+size.xscale =1
+size.yscale =1
+ignorehitpause = 1
+
+[State 2100, VFX clear]
+type = RemoveExplod
+trigger1 = AnimElem = 3
+id = 13018
+
+[State 2100, End / finisher]
+type = ChangeState
+trigger1 = !AnimTime
+value = 0
+ctrl = 1
+;------------------------------------------------------------------
+;LinearThrust move
+[Statedef 2200]
+type=S
+movetype=A
+physics=S
+ctrl=0
+anim=2200
+poweradd = -500
+velset=0,0
+sprpriority=2
+facep2=1
+
+[State 2200, hit slow]
+type = SuperPause
+trigger1 = time = [0,10]
+trigger1 = gametime%2=0
+movetime = 30
+anim = -1
+sound = -1
+time = 1
+darken = 0
+p2defmul = 1
+
+[State 2200, SFX]
+type = PlaySnd
+trigger1 = AnimElem =1
+value = 100,36
+
+[State 2200, half-dark overlay]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = 0,0,0
+mul = 100,100,100
+sinadd = 0,0,0,10
+invertall = 0
+ignorehitpause = 1
+
+[State 2200, afterimage trail]
+type = AfterImage
+trigger1 = AnimElem = 100
+time = 70
+trans = add
+length = 10
+timeGap = 1
+frameGap = 1
+palbright = 30,30,30
+palcontrast = 200,100,180
+paladd = 0,0,0
+palmul = .75,.75,.75
+
+[State 2200, SFX]
+type=PlaySnd
+trigger1=AnimElem=2
+trigger2=AnimElem=7
+value=1,6
+channel=1
+
+[State 2200, SFX]
+type=PlaySnd
+trigger1=AnimElem=14
+value=1,8
+channel=1
+
+[State 2200, SFX]
+type=PlaySnd
+trigger1=AnimElem=20
+value=1,9
+channel=1
+
+[State 2200, VFX]
+type = Explod
+trigger1 = animelem = 1
+anim = 13018
+id = 13018
+pos = 30,-80
+postype = p1
+scale = .5,.5
+bindtime = 999
+removeongethit = 1
+ownpal = 1
+persistent = 0
+sprpriority = 4
+ignorehitpause = 1
+
+[State 2200, blade glow trail]
+type =Helper
+trigger1 =animelem=2
+helpertype = normal 
+ID =2200
+stateno =2210
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, blade glow trail]
+type =Helper
+trigger1 =animelem=1
+helpertype = normal 
+ID =2200
+stateno =2211
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, blade glow trail]
+type =Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2200
+stateno =2212
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, aura flare]
+type = Helper
+trigger1 =animelem=2
+helpertype = normal 
+ID =2200
+stateno =2213
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+facing = -1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2
+id = 2200
+stateno = 10100
+postype = p1
+pos = 0,0
+ownpal = 1
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, blade glow trail]
+type =Helper
+trigger1 =animelem=5
+helpertype = normal 
+ID =2200
+stateno =2214
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, blade glow trail]
+type =Helper
+trigger1 =animelem=7
+helpertype = normal 
+ID =2200
+stateno =2215
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, blade glow trail]
+type =Helper
+trigger1 =animelem=9
+helpertype = normal 
+ID =2200
+stateno =2216
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, Slash trail helper]
+type = Helper
+trigger1 =animelem=7
+helpertype = normal 
+ID =2200
+stateno =2217
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 7
+id = 2200
+stateno = 10100
+postype = p1
+pos = -10,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 7
+id = 2200
+stateno = 10100
+postype = p1
+pos = 10,40
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 7
+id = 2200
+stateno = 10100
+postype = p1
+pos = -10,60
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 7
+id = 2200
+stateno = 10100
+postype = p1
+pos = -40,70
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Slash trail helper]
+type = Helper
+trigger1 =animelem=14
+helpertype = normal 
+ID =2200
+stateno =2218
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, Blade glint helper]
+type =Helper
+trigger1 =animelem=14
+helpertype = normal 
+ID =2200
+stateno =2219
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, blade glow trail]
+type =Helper
+trigger1 =animelem=14
+helpertype = normal 
+ID =2200
+stateno =2220
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 14
+id = 2200
+stateno = 10101
+postype = p1
+pos = 20,20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 14
+id = 2200
+stateno = 10101
+postype = p1
+pos = 80,-20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing =-1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 14
+id = 2200
+stateno = 10101
+postype = p1
+pos = -30,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 14
+id = 2200
+stateno = 10100
+postype = p1
+pos = 30,-50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 2200, Sword stab helper]
+type = Helper
+trigger1 =animelem=20
+helpertype = normal 
+ID =2200
+stateno =2222
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, aura flare]
+type = Helper
+trigger1 =animelem=20
+helpertype = normal 
+ID =2200
+stateno =2223
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, blade glow trail]
+type = Helper
+trigger1 =animelem=18
+helpertype = normal 
+ID =2200
+stateno =2224
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, blade glow trail]
+type = Helper
+trigger1 =animelem=20
+helpertype = normal 
+ID =2200
+stateno =2225
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 20
+id = 2200
+stateno = 10100
+postype = p1
+pos = 30,-10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 20,=2
+id = 2200
+stateno = 10100
+postype = p1
+pos = -20,-10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 20
+id = 2200
+stateno = 10100
+postype = p1
+pos = -70,-10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2200, Blade glow particles]
+type = Helper
+trigger1 = animelem = 20,=2
+id = 2200
+stateno = 10100
+postype = p1
+pos = 50,-10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2200, PosAdd]
+type = PosAdd
+trigger1 = AnimElem = 2
+trigger2 = AnimElem = 5
+trigger3 = AnimElem = 7
+x =20
+
+[State 2200, velocity / speed]
+type = velset
+trigger1 = AnimElemTime(14) >= 0
+trigger1 = AnimElemTime(16) < 0
+x = 5
+
+[State 2200, velocity / speed]
+type = veladd
+trigger1 = AnimElemTime(17) >= 0
+trigger1 = AnimElemTime(20) < 0
+x = 2
+
+[State 2200, velocity / speed]
+type = velset
+trigger1 = AnimElemTime(14) = 0
+x = 10
+y = -5
+
+[State 2200, velocity / speed]
+type = velset
+trigger1 = AnimElemTime(20) = 0
+x = 0
+
+[State 2200, velocity / speed]
+type = veladd
+trigger1 = AnimElemTime(14)> 0
+trigger1 = AnimElemTime(20) < 0
+y = .5
+
+[State 2200, positioning]
+type=posset
+trigger1=AnimElemTime(20) >= 0
+y = 0
+
+[State 2200, velocity / speed]
+type=velset
+trigger1=Pos y>-Vel y
+y = 0
+
+[State 2200,  HitDef block]
+type=HitDef
+trigger1 = AnimElem = 2
+attr= , NA
+damage = 50, 0
+guardflag=M
+hitflag=MAF
+ID = 2200
+priority=4, Hit
+pausetime =2, 4
+guard.pausetime = 8, 8
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-73
+hitsound= S2, 12
+guardsound=s130, 2
+animType=Light
+air.animType=Back
+fall.animType=Back
+ground.type=High
+air.type=Low
+ground.slidetime=24
+ground.hittime =24
+guard.hittime=24
+ground.velocity=-5
+guard.velocity=-5
+air.velocity=-4.21,-7.36
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+air.hittime=120
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recoverTime=120
+air.fall=1
+p2getp1state = 1
+p2stateNO = 3255
+SNAP=60,0
+
+[State 2200,  HitDef block]
+type=HitDef
+trigger1 = AnimElem = 7
+attr= , NA
+damage = 50, 0
+guardflag=M
+hitflag=MAF
+ID = 2200
+priority=4, Hit
+pausetime =2, 4
+guard.pausetime = 8, 8
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-73
+hitsound= S2, 12
+guardsound=s130, 2
+animType=Light
+air.animType=Back
+fall.animType=Back
+ground.type=High
+air.type=Low
+ground.slidetime=24
+ground.hittime =24
+guard.hittime=24
+ground.velocity=-5
+guard.velocity=-5
+air.velocity=-4.21,-7.36
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+air.hittime=120
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recoverTime=120
+air.fall=1
+p2getp1state = 1
+
+[State 2200,  HitDef block]
+type=HitDef
+trigger1 = AnimElem = 14
+trigger2 = AnimElem = 20
+attr=  , NA
+damage = 50, 0
+guardflag=M
+hitflag=MAF
+ID = 2200
+priority=4, Hit
+pausetime =2, 4
+guard.pausetime = 8, 8
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-73
+hitsound= S2, 14
+guardsound=s130, 2
+animType=Light
+air.animType=Back
+fall.animType=Back
+ground.type=High
+air.type=Low
+ground.slidetime=44
+ground.hittime =44
+guard.hittime=42
+ground.velocity=-15
+guard.velocity=-15
+air.velocity=-4.21,-7.36
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+air.hittime=120
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recoverTime=120
+air.fall=1
+p2getp1state = 1
+
+[State 2200, VFX clear]
+type = RemoveExplod
+trigger1 = AnimElem = 2
+id = 13018
+
+[State 2200, End / finisher]
+type = ChangeState
+trigger1 = !AnimTime
+value = 0
+ctrl = 1
+;------------------------------------------------------------------
+;HorizontalSlash move
+[Statedef 2300]
+type=S
+movetype=A
+physics=S
+ctrl=0
+anim=2300
+poweradd = -1000
+velset=0,0
+sprpriority=2
+facep2=1
+
+[State 2300, hit slow]
+type = SuperPause
+trigger1 = time = [0,10]
+trigger1 = gametime%2=0
+movetime = 30
+anim = -1
+sound = -1
+time = 1
+darken = 0
+p2defmul = 1
+
+[State 2300, SFX]
+type = PlaySnd
+trigger1 = AnimElem =1
+value = 100,36
+
+[State 2300, half-dark overlay]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = 0,0,0
+mul = 100,100,100
+sinadd = 0,0,0,10
+invertall = 0
+ignorehitpause = 1
+
+[State 2300, VFX]
+type = Explod
+trigger1 = animelem = 1
+anim = 13018
+id = 13018
+pos = 0,-65
+postype = p1
+scale = .5,.5
+bindtime = 999
+removeongethit = 1
+ownpal = 1
+persistent = 0
+sprpriority = -4
+ignorehitpause = 1
+
+[State 2300, velocity / speed]
+type = VelSet
+trigger1 = animelem = 3
+x = 8
+
+[State 2300, SFX]
+type=playsnd
+trigger1=animelem=4
+value=1,9
+channel=1
+
+[State 2300, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 300
+value = 0,20+random%6
+channel = 0
+
+[State 2300, transparency]
+type = Trans
+trigger1 =AnimElem = 5,>0
+trans = addalpha
+alpha = 286-time*4,256
+ignorehitpause =1
+
+[State 2300, Slash trail helper]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2300
+stateno =2310
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2300, Blade glint helper]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2300
+stateno =2311
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2300, blade glow trail]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2300
+stateno =2312
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2300, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4,=2
+id = 2300
+stateno = 10100
+postype = p1
+pos = 70,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2300, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2300
+stateno = 10100
+postype = p1
+pos = 30,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2300, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4,=2
+id = 2300
+stateno = 10100
+postype = p1
+pos = -20,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2300, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2300
+stateno = 10100
+postype = p1
+pos = -70,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2300, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4,=2
+id = 2300
+stateno = 10100
+postype = p1
+pos = 50,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2300, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2300
+stateno = 10100
+postype = p1
+pos = 0,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2300, quad slash3]
+type = Helper
+trigger1 = animelem = 6
+id = 2300
+stateno = 2302
+postype = p1
+pos = 0,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2300, quad slash2]
+type = Helper
+trigger1 = animelem = 6,20
+id = 2300
+stateno = 2301
+postype = p1
+pos = 0,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=1
+
+[State 2300, HitDef block]
+type=HitDef
+trigger1=AnimElem=4
+attr=S,NA        
+hitflag=MAF       
+guardflag=M         
+animtype=Hard         
+priority=4, Hit   
+damage = 88, 0
+ID = 200
+pausetime =12, 12
+guard.pausetime = 12, 12
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=150), var(36):=-63
+hitsound=S2,14
+guardsound=s130, 2
+air.animType=Back
+fall.animType=Back
+ground.type=High     
+air.type=Low
+ground.slidetime=18 
+ground.hittime=18 
+guard.hittime=18
+air.hittime=120
+ground.velocity=-2
+guard.velocity=-2
+air.velocity=-5.39, -5.65
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recovertime=120
+envshake.time=10
+envshake.freq=100
+envshake.ampl=4
+air.fall=1
+p2getp1state = 1
+
+[State 2300, VFX clear]
+type = RemoveExplod
+trigger1 = AnimElem = 2
+id = 13018
+
+[State 2300, End / finisher]
+type = ChangeState
+trigger1 = !AnimTime
+value = 2303
+
+[State 2300, End / finisher]
+type = ChangeState
+trigger1 = !AnimTime
+value = 0
+ctrl = 1
+;------------------------------------------------------------------
+;quad slash2
+[Statedef 2301]
+type   =A
+movetype= A
+physics=S
+ctrl=0
+anim=2301
+sprpriority=2
+
+[State 2301, positioning]
+type = PosSet
+trigger1 = animelem = 1
+x = (enemy,pos x)-100*(facing)
+y = -10
+
+[State 2301, velocity / speed]
+type = VelSet
+trigger1 = animelem = 1
+x = 8
+
+[State 2301, SFX]
+type=playsnd
+trigger1=animelem=4
+value=1,6
+channel=1
+
+[State 2301, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 200
+value = 0,0+random%5
+channel = 0
+
+[State 2301, transparency]
+type = Trans
+trigger1 =AnimElem = 4,>0
+trans = addalpha
+alpha = 286-time*4,256
+ignorehitpause =1
+
+[State 2301, Slash trail helper]
+type = Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2301
+stateno =2313
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2301, blade glow trail]
+type =Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2301
+stateno =2314
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2301, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2301
+stateno = 10101
+postype = p1
+pos = 20,20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2301, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2301
+stateno = 10101
+postype = p1
+pos = 80,-20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing =-1
+
+[State 2301, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2301
+stateno = 10101
+postype = p1
+pos = -30,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2301, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2301
+stateno = 10100
+postype = p1
+pos = 30,-50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 2301,  HitDef block]
+type = HitDef
+trigger1 = AnimElem=4
+attr = A, NA
+damage = 40, 0
+animtype = Light
+guardflag = HA
+hitflag = MAF
+ID = 200
+priority = 4, Hit
+pausetime = 8, 8
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-83
+hitsound = S2, 12
+guardsound = s130, 2
+air.animType = Back
+fall.animType = Back
+ground.type = High
+ground.slidetime = 12 
+ground.hittime  = 12
+guard.hittime = 12
+ground.velocity = -9
+guard.velocity = -9
+air.type = High
+air.velocity =-3,-7
+airguard.velocity = -5, -1
+ground.cornerPush.velOff = 0
+guard.cornerPush.velOff = 0
+air.cornerPush.velOff = 0
+air.hittime = 12
+airguard.ctrlTime = 16
+yaccel = .58
+fall = 0
+fall.recover = 1
+fall.recovertime = 120
+envshake.time = 8
+envshake.ampl = Ifelse(random<=500,-1,1)
+air.fall=1
+p2getp1state = 1
+
+[State 2301, spark var slot]
+type=varset
+trigger1= movecontact!=1
+var(30)=2
+ignorehitpause = 1
+
+[State 2301, attackspark]
+type=helper
+triggerall= movecontact=1 && var(30)=1
+trigger1= movehit=1 && numenemy
+trigger1= var(33)=12000  
+trigger2= moveguarded=1 && numenemy
+trigger2= var(34)=12100 
+helpertype=normal
+stateno=ifelse(moveguarded, var(34), var(33))
+ID=12000
+name="Spark"
+postype=p1
+pos= ifelse(p2dist x<0, (ceil(p2dist x)), ifelse(p2dist x<var(35), ceil(p2dist x), var(35))), var(36)
+facing= ifelse((p2bodydist x >=-5),-1,1);-1;enemynear,facing
+ownpal=1
+pausemovetime=65535
+supermovetime=65535
+ignorehitpause = 1
+size.xscale =1
+size.yscale =1
+
+[State 2301, spark var slot]
+type=varrangeset
+trigger1= movetype=I
+trigger2= movetype=H && time
+first=30
+last=36
+value=-1
+ignorehitpause = 1
+
+[State 2301, spark var slot]
+type=varadd
+trigger1= var(30)>0
+var(30)=-1
+ignorehitpause = 1
+
+[State 2301, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;quad slash3
+[Statedef 2302]
+type   =A
+movetype= A
+physics=S
+ctrl=0
+anim=2302
+sprpriority=2
+
+[State 2302, positioning]
+type = PosSet
+trigger1 = animelem = 1
+x = (enemy,pos x)-80*(facing)
+y = -50
+
+[State 2302, velocity / speed]
+type = VelSet
+trigger1 = animelem = 1
+x = 8
+
+[State 2302, transparency]
+type = Trans
+trigger1 =AnimElem = 4,>0
+trans = addalpha
+alpha = 286-time*4,256
+ignorehitpause =1
+
+[State 2302, SFX]
+type=playsnd
+trigger1=animelem=4
+value=1,6
+channel=1
+
+[State 2302, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 200
+value = 0,0+random%5
+channel = 0
+
+[State 2302, Helper]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2302
+stateno =2315
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2302, Helper]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2302
+stateno =2316
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2302, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2302
+stateno = 10101
+postype = p1
+pos = -30,80
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2302, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2302
+stateno = 10101
+postype = p1
+pos = 100,40
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing =-1
+
+[State 2302, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2302
+stateno = 10101
+postype = p1
+pos = -80,20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2302, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 2302
+stateno = 10100
+postype = p1
+pos = 30,-20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 2302,  HitDef block]
+type = HitDef
+trigger1 = AnimElem=4
+attr = A, NA
+damage = 40, 0
+animtype = Light
+guardflag = HA
+hitflag = MAF
+ID = 200
+priority = 4, Hit
+pausetime = 8, 8
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-13
+hitsound = S2, 12
+guardsound = s130, 2
+air.animType = Back
+fall.animType = Back
+ground.type = High
+ground.slidetime = 12 
+ground.hittime  = 12
+guard.hittime = 12
+ground.velocity = -2
+guard.velocity = -2
+air.type = High
+air.velocity =-3,-7
+airguard.velocity = -5, -1
+ground.cornerPush.velOff = 0
+guard.cornerPush.velOff = 0
+air.cornerPush.velOff = 0
+air.hittime = 12
+airguard.ctrlTime = 16
+yaccel = .58
+fall = 0
+fall.recover = 1
+fall.recovertime = 120
+envshake.time = 8
+envshake.ampl = Ifelse(random<=500,-1,1)
+air.fall=1
+p2getp1state = 1
+
+[State 2302, spark var slot]
+type=varset
+trigger1= movecontact!=1
+var(30)=2
+ignorehitpause = 1
+
+[State 2302, attackspark]
+type=helper
+triggerall= movecontact=1 && var(30)=1
+trigger1= movehit=1 && numenemy
+trigger1= var(33)=12000  
+trigger2= moveguarded=1 && numenemy
+trigger2= var(34)=12100 
+helpertype=normal
+stateno=ifelse(moveguarded, var(34), var(33))
+ID=12000
+name="Spark"
+postype=p1
+pos= ifelse(p2dist x<0, (ceil(p2dist x)), ifelse(p2dist x<var(35), ceil(p2dist x), var(35))), var(36)
+facing= ifelse((p2bodydist x >=-5),-1,1);-1;enemynear,facing
+ownpal=1
+pausemovetime=65535
+supermovetime=65535
+ignorehitpause = 1
+size.xscale =1
+size.yscale =1
+
+[State 2302, spark var slot]
+type=varrangeset
+trigger1= movetype=I
+trigger2= movetype=H && time
+first=30
+last=36
+value=-1
+ignorehitpause = 1
+
+[State 2302, spark var slot]
+type=varadd
+trigger1= var(30)>0
+var(30)=-1
+ignorehitpause = 1
+
+[State 2302, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;quad slash4
+[Statedef 2303]
+type   =S
+movetype= A
+physics=S
+ctrl=0
+anim=2303
+sprpriority=2
+facep2=1
+velset=0,0
+
+[State 2303, half-dark overlay]
+type = BGPalFX
+trigger1 = 1
+time = 30
+add = 0,0,0
+mul = 100,100,100
+sinadd = 0,0,0,10
+invertall = 0
+ignorehitpause = 1
+
+[State 2303, facing]
+type = Turn
+trigger1 = animelem = 1
+
+[State 2303, positioning]
+type = PosSet
+trigger1 = animelem = 1
+x = (enemy,pos x)-80*(facing)
+
+[State 2303, velocity / speed]
+type = posadd
+trigger1 = animelem = 3
+x = 70
+
+[State 2303, velocity / speed]
+type = velset
+trigger1 = animelem = 3
+x = 10
+
+[State 2303, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 2303, SFX]
+type=Playsnd
+trigger1=AnimElem=2
+value=1,8
+channel=1
+
+[State 2303, SFX]
+type=Playsnd
+trigger1=AnimElem=6,=13
+value=S2, 13
+
+[State 2303, SFX]
+type=Playsnd
+trigger1=AnimElem=6,=16
+value=S2, 13
+
+[State 2303, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 250
+value = 0,10+random%7
+channel = 0
+
+[State 2303, blade glow trail]
+type =Helper
+trigger1 =animelem=1
+helpertype = normal 
+ID =2303
+stateno =2317
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2303,blade glow trail]
+type =Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2303
+stateno =2318
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2303, blade glow trail]
+type =Helper
+trigger1 =animelem=5
+helpertype = normal 
+ID =2303
+stateno =2319
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2303, Slash trail helper]
+type = Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2303
+stateno =2320
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2303, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2303
+stateno = 10100
+postype = p1
+pos = -10,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2303
+stateno = 10100
+postype = p1
+pos = 10,40
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2303
+stateno = 10100
+postype = p1
+pos = -10,60
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2303
+stateno = 10100
+postype = p1
+pos = -40,70
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, Quad slash beam]
+type = Helper
+trigger1 = animelem = 6
+id = 2303
+stateno = 2306
+postype = p2
+pos = 0,-50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, Quad slash beam]
+type = Helper
+trigger1 = animelem = 6
+id = 2303
+stateno = 2307
+postype = p2
+pos = 0,-50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, Quad slash beam]
+type = Helper
+trigger1 = animelem = 6
+id = 2303
+stateno = 2308
+postype = p2
+pos = 0,-50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, Quad slash beam]
+type = Helper
+trigger1 = animelem = 6
+id = 2303
+stateno = 2309
+postype = p2
+pos = 0,-50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2303, HitDef block]
+type=HitDef
+trigger1=AnimElem=3
+attr=S,NA        
+hitflag=MAF       
+guardflag=M         
+priority=4 ,Hit   
+damage = 50, 0
+ID = 200
+hitsound=S2, 13
+guardsound=s130, 2
+pausetime =10,10
+guard.pausetime = 10, 10
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-83
+animType=Medium
+air.animType=Back
+fall.animType=Back
+ground.type=High
+air.type=Low
+ground.slidetime=15 
+ground.hittime=15 
+guard.hittime=15
+air.hittime=120
+ground.velocity=-5
+guard.velocity=-5
+air.velocity=-3.24, -7.73
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recoverTime=120
+envshake.time=10
+envshake.freq=100
+envshake.ampl=4
+p2stateno = 2304
+
+[State 2303, state type]
+type=StateTypeSet
+trigger1=AnimElemTime(4) = 0
+moveType=I
+
+[State 2303, End / finisher]
+type=ChangeState
+trigger1=!AnimTime
+value=0
+ctrl=1
+;------------------------------------------------------------------
+;quad-slash hit react
+[Statedef 2304]
+type=A
+movetype=H
+physics=N
+ctrl=0
+velset=0,-20
+
+[State 2304, screen lock]
+type = ScreenBound
+trigger1 = 1
+value = 0
+movecamera = 0,0
+
+[State 2304, animation elem]
+type = ChangeAnim2
+trigger1 = !time
+value = 2304
+ignorehitpause = 1
+
+[State 2304, positioning]
+type = PosSet
+triggerall = !time
+trigger1 = Pos Y >=0
+Y = -1
+ignorehitpause = 1
+
+[State 2304, pause]
+type = PosFreeze
+trigger1 = time <= 40
+ignorehitpause = 1
+
+[State 2304, velocity / speed]
+type = VelAdd
+trigger1 = animelemno(0)>=2
+Y = 0.6
+ignorehitpause = 1
+
+[State 2304, env shake]
+type = EnvShake
+trigger1 = Pos Y >=0
+time = 8
+freq = 100
+ampl = 13
+ignorehitpause = 1
+
+[State 2304, state change]
+type = changeState
+trigger1 = Pos Y >=0
+trigger1 = vel Y>0
+trigger2 = time >=600
+value = 5050
+ignorehitpause = 1
+;------------------------------------------------------------------
+;Quad slash beam
+[Statedef 2306]
+physics  = N
+anim = 13019
+ctrl = 0
+velset=0,0
+sprpriority=3
+
+[State 2306, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 250-time*3,256
+ignorehitpause =1
+
+[State 2306, scale]
+type = AngleDraw
+trigger1 = 1
+scale = .5+time*.05,.7+time*.07
+
+[State 2306, velocity / speed]
+type = Velset
+trigger1 = 1
+x = 3
+y = .5
+
+[State 2306, shadow cleanup]
+type = AssertSpecial
+Trigger1 = 1
+flag = noshadow
+ignorehitpause =1
+
+[State 2306, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;Quad slash beam
+[Statedef 2307]
+physics  = N
+anim = 13020
+ctrl = 0
+velset=0,0
+sprpriority=3
+
+[State 2307, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 250-time*3,256
+ignorehitpause =1
+
+[State 2307, scale]
+type = AngleDraw
+trigger1 = 1
+scale = .5+time*.05,.7+time*.07
+value = 150
+
+[State 2307, velocity / speed]
+type = Velset
+trigger1 = 1
+x = -2.5
+y = -1.5
+
+[State 2307, shadow cleanup]
+type = AssertSpecial
+Trigger1 = 1
+flag = noshadow
+ignorehitpause =1
+
+[State 2307, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;Quad slash beam
+[Statedef 2308]
+physics  = N
+anim = 13021
+ctrl = 0
+velset=0,0
+sprpriority=3
+
+[State 2308, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 250-time*3,256
+ignorehitpause =1
+
+[State 2308, facing]
+type = AngleDraw
+trigger1 = 1
+scale = .7+time*.07,.5+time*.05
+value = -50
+
+[State 2308, velocity / speed]
+type = Velset
+trigger1 = 1
+x = -1
+y = 2
+
+[State 2308, shadow cleanup]
+type = AssertSpecial
+Trigger1 = 1
+flag = noshadow
+ignorehitpause =1
+
+[State 2308, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;Quad slash beam
+[Statedef 2309]
+physics  = N
+anim = 13022
+ctrl = 0
+velset=0,0
+sprpriority=3
+
+[State 2309, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 250-time*3,256
+ignorehitpause =1
+
+[State 2309, facing]
+type = AngleDraw
+trigger1 = 1
+scale = .5+time*.05,.7+time*.07
+value = 30
+
+[State 0, velocity / speed]
+type = Velset
+trigger1 = 1
+x = 2.5
+y = -.8
+
+[State 2309, shadow cleanup]
+type = AssertSpecial
+Trigger1 = 1
+flag = noshadow
+ignorehitpause =1
+
+[State 2309, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;StardustGleam move
+[Statedef 2400]
+type=S
+movetype=A
+physics=S
+ctrl=0
+anim=2400
+poweradd = -500
+velset=0,0
+sprpriority=2
+facep2=1
+
+[State 2400, hit slow]
+type = SuperPause
+trigger1 = time = [0,10]
+trigger1 = gametime%2=0
+movetime = 30
+anim = -1
+sound = -1
+time = 1
+darken = 0
+p2defmul = 1
+
+[State 2400, SFX]
+type = PlaySnd
+trigger1 = AnimElem =1
+value = 100,36
+
+[State 2400, half-dark overlay]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = 0,0,0
+mul = 100,100,100
+sinadd = 0,0,0,10
+invertall = 0
+ignorehitpause = 1
+
+[State 2400, VFX]
+type = Explod
+trigger1 = animelem = 1
+anim = 13018
+id = 2400
+pos = 0,-65
+postype = p1
+scale = .5,.5
+bindtime = 999
+removeongethit = 1
+ownpal = 1
+persistent = 0
+sprpriority = -4
+ignorehitpause = 1
+
+[State 2400, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2400, SFX]
+type=playsnd
+trigger1=animelem=4
+value=1,9
+channel=1
+
+[State 2400, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 300
+value = 0,20+random%6
+channel = 0
+
+[State 2400, transparency]
+type = Trans
+trigger1 =AnimElem = 5,>0
+trans = addalpha
+alpha = 286-time*4,256
+ignorehitpause =1
+
+[State 2400, Slash trail helper]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2400
+stateno =2410
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2400, Blade glint helper]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =2400
+stateno =2411
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2400, blade glow trail]
+type = Helper
+trigger1 =animelem=4
+helpertype = normal 
+ID =320
+stateno =2412
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2400, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4,=2
+id = 10100
+stateno = 10100
+postype = p1
+pos = 70,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 10100
+stateno = 10100
+postype = p1
+pos = 30,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4,=2
+id = 10100
+stateno = 10100
+postype = p1
+pos = -20,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 10100
+stateno = 10100
+postype = p1
+pos = -70,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4,=2
+id = 10100
+stateno = 10100
+postype = p1
+pos = 50,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2400, Blade glow particles]
+type = Helper
+trigger1 = animelem = 4
+id = 10100
+stateno = 10100
+postype = p1
+pos = 0,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2400, StardustGleam move]
+type = Helper
+trigger1 = animelem = 3
+id = 2405
+stateno = 2405
+postype = p1
+pos = 0,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, StardustGleam move2]
+type = Helper
+trigger1 = animelem = 3,=10
+id = 2401
+stateno = 2401
+postype = p1
+pos = 0,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, StardustGleam move3]
+type = Helper
+trigger1 = animelem = 3,=30
+id = 2402
+stateno = 2402
+postype = p1
+pos = 0,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, StardustGleam move4]
+type = Helper
+trigger1 = animelem = 3,=40
+id = 2403
+stateno = 2403
+postype = p1
+pos = 0,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2400, HitDef block]
+type=HitDef
+trigger1=AnimElem=4
+attr=S,NA        
+hitflag=MAF       
+guardflag=M         
+animtype=Hard         
+priority=4, Hit   
+damage = 88, 0
+ID = 200
+pausetime =12, 12
+guard.pausetime = 12, 12
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=150), var(36):=-63
+hitsound=S2,14
+guardsound=s130, 2
+air.animType=Back
+fall.animType=Back
+ground.type=High     
+air.type=Low
+ground.slidetime=18 
+ground.hittime=18 
+guard.hittime=18
+air.hittime=120
+ground.velocity=-2
+guard.velocity=-2
+air.velocity=-5.39, -5.65
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recovertime=120
+envshake.time=10
+envshake.freq=100
+envshake.ampl=4
+air.fall=1
+p2stateNO = 3255
+SNAP=60,0
+
+[State 2400, VFX clear]
+type = RemoveExplod
+trigger1 = AnimElem = 3
+id = 13018
+
+[State 2400, End / finisher]
+type=ChangeState
+trigger1=!AnimTime
+value=2404
+ctrl=1
+;------------------------------------------------------------------
+;StardustGleam move2
+[Statedef 2401]
+type   =C
+movetype= A
+physics=C
+ctrl=0
+anim=2401
+sprpriority=2
+facep2=1
+velset=0,0
+
+[State 2401, SFX]
+type=playsnd
+trigger1= animelem=3
+value=1,9
+channel=1
+
+[State 2401, positioning]
+type = PosSet
+trigger1 = AnimElem = 1
+x = helper(2405),pos x
+
+[State 2401, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 300
+value = 0,20+random%6
+channel = 0
+
+[State 2401, velocity / speed]
+type = VelSet
+trigger1 = animelem = 1
+x = 8
+
+[State 2401, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2401, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 200-time*3,256
+ignorehitpause =1
+
+[State 2401, offset move]
+type = Posadd
+trigger1 = animelem = 1, > 0
+trigger1 = animelem = 3, <= 0
+x = 2.5 
+
+[State 2401, Slash trail helper]
+type = Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2401
+stateno =2413
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2401, blade glow trail]
+type =Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2401
+stateno =2414
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2401, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2401
+stateno = 10101
+postype = p1
+pos = 20,20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2401, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2401
+stateno = 10101
+postype = p1
+pos = 80,-20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing =-1
+
+[State 2401, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2401
+stateno = 10101
+postype = p1
+pos = -30,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2401, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2401
+stateno = 10100
+postype = p1
+pos = 30,-50
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 2401, HitDef block]
+type = HitDef
+trigger1= AnimElem=3
+attr = C,NA      
+hitflag = MAF
+guardflag = M
+animtype = Hard        
+priority = 4, Hit  
+damage = 60, 0
+ID=2401
+pausetime = 12, 12
+guard.pausetime = 12, 12
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-100
+hitsound = S2,14
+guardsound = s130, 2
+air.animType = Back
+fall.animType = Back
+ground.type = High
+air.type=Low
+ground.slidetime = 20
+ground.hittime = 20
+guard.hittime = 18
+air.hittime =30
+ground.velocity = -4.5
+guard.velocity = -4.5
+air.velocity = -2.5,-3
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+airguard.cornerpush.veloff = 0
+yaccel =  .58
+fall = 0
+fall.recover = 1
+fall.recovertime = 20
+palFX.time = 12 
+palFX.add = 255,255,255
+palFX.sinAdd= -255,-255,-255,48
+envshake.time = 12
+envshake.ampl = Ifelse(random<=500,-4,4)
+air.fall=1
+p2getp1state = 1
+p2stateNO = 3255
+SNAP=60,0
+
+[State 2401, spark var slot]
+type=varset
+trigger1= movecontact!=1
+var(30)=2
+ignorehitpause = 1
+
+[State 2401, attackspark]
+type=helper
+triggerall= movecontact=1 && var(30)=1
+trigger1= movehit=1 && numenemy
+trigger1= var(33)=12000  
+trigger2= moveguarded=1 && numenemy
+trigger2= var(34)=12100 
+helpertype=normal
+stateno=ifelse(moveguarded, var(34), var(33))
+ID=12000
+name="Spark"
+postype=p1
+pos= ifelse(p2dist x<0, (ceil(p2dist x)), ifelse(p2dist x<var(35), ceil(p2dist x), var(35))), var(36)
+facing= ifelse((p2bodydist x >=-5),-1,1);-1;enemynear,facing
+ownpal=1
+pausemovetime=65535
+supermovetime=65535
+ignorehitpause = 1
+size.xscale =1
+size.yscale =1
+
+[State 2401, spark var slot]
+type=varrangeset
+trigger1= movetype=I
+trigger2= movetype=H && time
+first=30
+last=36
+value=-1
+ignorehitpause = 1
+
+[State 2401, spark var slot]
+type=varadd
+trigger1= var(30)>0
+var(30)=-1
+ignorehitpause = 1
+
+[State 2401, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;StardustGleam move3
+[Statedef 2402]
+type   =C
+movetype= A
+physics=C
+ctrl=0
+anim=2402
+sprpriority=2
+facep2=1
+velset=0,0
+
+[State 2402, SFX]
+type=Playsnd
+trigger1=AnimElem=3
+value=1,8
+channel=1
+
+[State 2402, positioning]
+type = PosSet
+trigger1 = AnimElem = 1
+x = helper(2401),pos x
+
+[State 2402, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 250
+value = 0,10+random%7
+channel = 0
+
+[State 2402, velocity / speed]
+type = VelSet
+trigger1 = animelem = 1
+x = 12
+
+[State 2402, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2402, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 200-time*3,256
+ignorehitpause =1
+
+[State 2402, blade glow trail]
+type =Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2402
+stateno =2415
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2402, aura flare]
+type =Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2402
+stateno =2416
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+facing = -1
+
+[State 2402, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2
+id = 2402
+stateno = 10101
+postype = p1
+pos = -20,80
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2402, Hit 1]
+type=HitDef
+trigger1=AnimElem=3
+attr=C,NA        
+hitflag=MAFD      
+guardflag=M         
+animtype=Medium         
+priority=4 ,Hit   
+damage = 66, 0
+ID = 2402
+hitsound=S2, 14
+guardsound=s130, 2
+pausetime =10, 10
+guard.pausetime = 10,10
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-1
+air.animType=Back
+fall.animType=Back
+ground.type=Low      
+air.type=Low
+ground.slidetime=15 
+ground.hittime=15 
+guard.hittime=15
+air.hittime=120
+ground.velocity=-5
+guard.velocity=-5
+air.velocity=-3.24, -7.73
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recovertime=120
+air.fall=1
+p2getp1state = 1
+
+[State 2402, spark var slot]
+type=varset
+trigger1= movecontact!=1
+var(30)=2
+ignorehitpause = 1
+
+[State 2402, attackspark]
+type=helper
+triggerall= movecontact=1 && var(30)=1
+trigger1= movehit=1 && numenemy
+trigger1= var(33)=12000  
+trigger2= moveguarded=1 && numenemy
+trigger2= var(34)=12100 
+helpertype=normal
+stateno=ifelse(moveguarded, var(34), var(33))
+ID=12000
+name="Spark"
+postype=p1
+pos= ifelse(p2dist x<0, (ceil(p2dist x)), ifelse(p2dist x<var(35), ceil(p2dist x), var(35))), var(36)
+facing= ifelse((p2bodydist x >=-5),-1,1);-1;enemynear,facing
+ownpal=1
+pausemovetime=65535
+supermovetime=65535
+ignorehitpause = 1
+size.xscale =1
+size.yscale =1
+
+[State 2402, spark var slot]
+type=varrangeset
+trigger1= movetype=I
+trigger2= movetype=H && time
+first=30
+last=36
+value=-1
+ignorehitpause = 1
+
+[State 2402, spark var slot]
+type=varadd
+trigger1= var(30)>0
+var(30)=-1
+ignorehitpause = 1
+
+[State 2402, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;StardustGleam move4
+[Statedef 2403]
+type   =S
+movetype= A
+physics=S
+ctrl=0
+velset=0,0
+anim=2403
+sprpriority=2
+facep2=1
+
+[State 2403, SFX]
+type=Playsnd
+trigger1=AnimElem=2
+value=1,8
+channel=1
+
+[State 2403, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 250
+value = 0,10+random%7
+channel = 0
+
+[State 2403, positioning]
+type = PosSet
+trigger1 = AnimElem = 1
+x = helper(2402),pos x
+
+[State 2403, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 200-time*3,256
+ignorehitpause =1
+
+[State 2403, velocity / speed]
+type = VelSet
+trigger1 = animelem = 1
+x = 20
+
+[State 2403, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2403, Slash trail helper]
+type = Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2403
+stateno =2417
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2403, blade glow trail]
+type =Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2403
+stateno =2418
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2403, blade glow trail]
+type =Helper
+trigger1 =animelem=5
+helpertype = normal 
+ID =2403
+stateno =2419
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2403, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2403
+stateno = 10100
+postype = p1
+pos = -10,0
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2403, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2403
+stateno = 10100
+postype = p1
+pos = 10,40
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2403, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2403
+stateno = 10100
+postype = p1
+pos = -10,60
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2403, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2403
+stateno = 10100
+postype = p1
+pos = -40,70
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2403,  HitDef block]
+type=HitDef
+trigger1=AnimElem=3
+attr=S,NA        
+hitflag=MAF       
+guardflag=M         
+priority=4 ,Hit   
+damage = 50, 0
+ID = 2403
+hitsound=S2, 14
+guardsound=s130, 2
+pausetime =10,10
+guard.pausetime = 10, 10
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=120), var(36):=-83
+animType=Medium
+air.animType=Back
+fall.animType=Back
+ground.type=High
+air.type=Low
+ground.slidetime=15 
+ground.hittime=15 
+guard.hittime=15
+air.hittime=120
+ground.velocity=-5
+guard.velocity=-5
+air.velocity=-3.24, -7.73
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recoverTime=120
+envshake.time=10
+envshake.freq=100
+envshake.ampl=4
+air.fall=1
+p2getp1state = 1
+
+[State 2403, spark var slot]
+type=varset
+trigger1= movecontact!=1
+var(30)=2
+ignorehitpause = 1
+
+[State 2403, attackspark]
+type=helper
+triggerall= movecontact=1 && var(30)=1
+trigger1= movehit=1 && numenemy
+trigger1= var(33)=12000  
+trigger2= moveguarded=1 && numenemy
+trigger2= var(34)=12100 
+helpertype=normal
+stateno=ifelse(moveguarded, var(34), var(33))
+ID=12000
+name="Spark"
+postype=p1
+pos= ifelse(p2dist x<0, (ceil(p2dist x)), ifelse(p2dist x<var(35), ceil(p2dist x), var(35))), var(36)
+facing= ifelse((p2bodydist x >=-5),-1,1);-1;enemynear,facing
+ownpal=1
+pausemovetime=65535
+supermovetime=65535
+ignorehitpause = 1
+size.xscale =1
+size.yscale =1
+
+[State 2403, spark var slot]
+type=varrangeset
+trigger1= movetype=I
+trigger2= movetype=H && time
+first=30
+last=36
+value=-1
+ignorehitpause = 1
+
+[State 2403, spark var slot]
+type=varadd
+trigger1= var(30)>0
+var(30)=-1
+ignorehitpause = 1
+
+[State 2403, state type]
+type=StateTypeSet
+trigger1=AnimElemTime(4) = 0
+moveType=I
+
+[State 2403, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;------------------------------------------------------------------
+;StardustGleam move5
+[Statedef 2404]
+type   =C
+movetype= A
+physics=C
+ctrl=0
+anim=2404
+sprpriority=2
+facep2=1
+velset=0,0
+
+[State 2404, half-dark overlay]
+type = BGPalFX
+trigger1 = 1
+time = 2
+add = 0,0,0
+mul = 100,100,100
+sinadd = 0,0,0,10
+invertall = 0
+ignorehitpause = 1
+
+[State 2404, SFX]
+type=PlaySnd
+trigger1=AnimElem=2
+value=1,8
+channel=1
+
+[State 2404, SFX]
+type=PlaySnd
+trigger1=AnimElem=6
+value=1,9
+channel=1
+
+[State 2404, positioning]
+type = PosSet
+trigger1 = AnimElem = 1
+x = helper(2403),pos x
+
+[State 2404, SFX]
+type=PlaySnd
+trigger1=AnimElem=3
+value=1,6
+channel=1
+
+[State 2404, voice cue]
+type = PlaySnd
+trigger1 = AnimElem = 1 && Random < 200
+value = 0,0+random%5
+channel = 0
+
+[State 2404, transparency]
+type = Trans
+trigger1 =1
+trans = addalpha
+alpha = 150+time*2,150-time*2
+ignorehitpause =1
+
+[State 2404, velocity / speed]
+type = VelSet
+trigger1 = animelem = 1
+x = 20
+
+[State 2404, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2404, Slash trail helper]
+type = Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2404
+stateno =2420
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2404, blade glow trail]
+type = Helper
+trigger1 =animelem=3
+helpertype = normal 
+ID =2404
+stateno =2421
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2404, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2404
+stateno = 10101
+postype = p1
+pos = 30,60
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2404, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2404
+stateno = 10101
+postype = p1
+pos = 30,20
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = -1
+
+[State 210, Blade glow particles]
+type = Helper
+trigger1 = animelem = 3
+id = 2404
+stateno = 10100
+postype = p1
+pos = -50,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing = 1
+
+[State 2404, HitDef block]
+type = HitDef
+trigger1= AnimElem=3
+attr = C,NA      
+hitflag = MAF
+guardflag = M
+animtype = Hard        
+priority = 4, Hit  
+damage = 60, 0
+ID=2404
+pausetime = 6, 6
+guard.pausetime = 6, 6
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=150), var(36):=-5
+hitsound = S2,14
+guardsound = s130, 2
+air.animType = Back
+fall.animType = Back
+ground.type = High
+air.type=Low
+ground.slidetime = 60
+ground.hittime = 60
+guard.hittime = 18
+air.hittime =30
+ground.velocity = -4.5
+guard.velocity = -4.5
+air.velocity = -2.5,-3
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+airguard.cornerpush.veloff = 0
+yaccel =  .58
+fall = 0
+fall.recover = 1
+fall.recovertime = 120
+palFX.time = 12 
+palFX.add = 255,255,255
+palFX.sinAdd= -255,-255,-255,48
+p2stateno = 2406
+
+[State 2404, End / finisher]
+type=ChangeState
+trigger1=!AnimTime
+value=11
+ctrl=1
+;------------------------------------------------------------------
+;StardustGleam move
+[Statedef 2405]
+type   =C
+movetype= A
+physics=C
+ctrl=0
+anim=2405
+sprpriority=2
+facep2=1
+velset=0,0
+
+[State 2405, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 2405, SFX]
+type=playsnd
+trigger1=animelem=2
+value=1,9
+channel=1
+
+[State 2405, transparency]
+type = Trans
+trigger1 =AnimElem = 3,>0
+trans = addalpha
+alpha = 286-time*4,256
+ignorehitpause =1
+
+[State 2405, Helper]
+type = Helper
+trigger1 =animelem=2
+helpertype = normal 
+ID =2405
+stateno =2410
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2405, Helper]
+type = Helper
+trigger1 =animelem=2
+helpertype = normal 
+ID =2405
+stateno =2411
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2405, Helper]
+type = Helper
+trigger1 =animelem=2
+helpertype = normal 
+ID =2405
+stateno =2412
+pos = 0,0
+postype = p1
+ownpal = 1
+persistent=0
+
+[State 2405, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2,=2
+id = 2405
+stateno = 10100
+postype = p1
+pos = 70,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2405, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2
+id = 2405
+stateno = 10100
+postype = p1
+pos = 30,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+
+[State 2405, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2,=2
+id = 2405
+stateno = 10100
+postype = p1
+pos = -20,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2405, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2
+id = 2405
+stateno = 10100
+postype = p1
+pos = -70,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+
+[State 2405, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2,=2
+id = 2405
+stateno = 10100
+postype = p1
+pos = 50,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2405, Blade glow particles]
+type = Helper
+trigger1 = animelem = 2
+id = 2405
+stateno = 10100
+postype = p1
+pos = 0,10
+ownpal = 0
+persistent = 0
+ignorehitpause = 1
+facing=-1
+
+[State 2405, HitDef block]
+type=HitDef
+trigger1=AnimElem=2
+attr= ,NA        
+hitflag=MAF       
+guardflag=M         
+animtype=Hard         
+priority=4, Hit   
+damage = 88, 0
+ID = 2405
+pausetime =12, 12
+guard.pausetime = 12, 12
+sparkno = -1 + 0*(var(33):=12000)
+guard.sparkno =  -1 + 0*(var(34):=12100)
+sparkxy = -10 + 0*(var(35):=150), var(36):=-63
+hitsound=S2,14
+guardsound=s130, 2
+air.animType=Back
+fall.animType=Back
+ground.type=High     
+air.type=Low
+ground.slidetime=18 
+ground.hittime=18 
+guard.hittime=18
+air.hittime=120
+ground.velocity=-2
+guard.velocity=-2
+air.velocity=-5.39, -5.65
+ground.cornerPush.velOff=0
+guard.cornerPush.velOff=0
+air.cornerPush.velOff=0
+yaccel=.58
+fall=0
+fall.recover=1
+fall.recovertime=120
+envshake.time=10
+envshake.freq=100
+envshake.ampl=4
+air.fall=1
+p2stateNO = 3255
+SNAP=60,0
+
+[State 2405, spark var slot]
+type=varset
+trigger1= movecontact!=1
+var(30)=2
+ignorehitpause = 1
+
+[State 2405, attackspark]
+type=helper
+triggerall= movecontact=1 && var(30)=1
+trigger1= movehit=1 && numenemy
+trigger1= var(33)=12000  
+trigger2= moveguarded=1 && numenemy
+trigger2= var(34)=12100 
+helpertype=normal
+stateno=ifelse(moveguarded, var(34), var(33))
+ID=12000
+name="Spark"
+postype=p1
+pos= ifelse(p2dist x<0, (ceil(p2dist x)), ifelse(p2dist x<var(35), ceil(p2dist x), var(35))), var(36)
+facing= ifelse((p2bodydist x >=-5),-1,1);-1;enemynear,facing
+ownpal=1
+pausemovetime=65535
+supermovetime=65535
+ignorehitpause = 1
+size.xscale =1
+size.yscale =1
+
+[State 2405, spark var slot]
+type=varrangeset
+trigger1= movetype=I
+trigger2= movetype=H && time
+first=30
+last=36
+value=-1
+ignorehitpause = 1
+
+[State 2405, spark var slot]
+type=varadd
+trigger1= var(30)>0
+var(30)=-1
+ignorehitpause = 1
+
+[State 2405, dissipate fade]
+type = destroyself
+trigger1 =!animtime
+;---------------------------------------------------------------------------
+;StardustGleam moveget hit
+[Statedef 2406]
+type = A
+movetype = H
+physics = N
+ctrl = 0
+sprpriority = 1
+
+[State 2406, positioning]
+type = PosSet
+trigger1 = !Time
+y = 0
+
+[State 2406, animation elem]
+type = ChangeAnim2
+Trigger1 = !Time
+value = 815
+
+[State 2406, corner push]
+type = playerpush
+trigger1 = 1
+value = 0
+
+[State 2406, animation elem]
+type = ChangeAnim
+Trigger1 = Time = 14
+value = ifelse(selfanimexist(5051),5051,5030)
+
+[State 2406, invulnerability]
+type = NotHitBy
+trigger1 = anim = 5051 || anim = 5030
+value = SCA
+time = 1
+
+[State 2406, corner push]
+type = PlayerPush
+trigger1 = anim = 5051 || anim = 5030
+value = 0
+
+[State 2406, velocity / speed]
+type = VelSet
+trigger1 = Time = 14
+x = -8
+
+[State 2406, velocity / speed]
+type = VelAdd
+trigger1 = Time >= 14
+x = .25
+
+[State 2406, state typestate change]
+type = ChangeState
+trigger1 = time>40
+value = 2407
+;---------------------------------------------------------------------------
+;StardustGleam movehit knockdown
+[Statedef 2407]
+type    = S
+movetype= H
+physics = N
+ctrl = 0
+sprpriority = 2
+velset = 0,0
+
+[State 2407, remove helper]
+type = DestroySelf
+trigger1 = IsHelper
+
+[State 2407, remove helper]
+type = LifeAdd
+trigger1 = IsHelper
+value = -999999999**9999999
+ 
+[State 2407, aerial cancel]    
+type = HitFallSet
+trigger1 = time = 0
+value = 0
+
+[State 2407, animation elem]
+type = ChangeAnim2
+trigger1 = time = 0
+value = 2407
+
+[State 2407, squeeze clip]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 2407, screen lock]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,0
+
+[State 2407, positioning]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 2407, clear remove]
+type = SelfState
+trigger1 = !alive
+value = 5120
+
+[State 2407, clear remove]
+type = SelfState
+trigger1 = animtime = 0
+value = 5120
